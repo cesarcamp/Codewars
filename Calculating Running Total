@@ -14,13 +14,13 @@ date       | count | total
 
 /* SOLUTION */
 
-with data as (
+WTH data as (
 
-  select date(created_at) as date, count(title) as count, (select count(title)) as total 
-  from posts
-  group by date
-  order by date asc
+  SELECT date(created_at) as date, COUNT(title) AS count, (SELECT COUNT(title)) AS total 
+  FROM posts
+  GROUP BY date
+  ORDER BY date asc
 )
 
-select date, count, cast(sum(total) over (order by date) as integer) as total
-from data
+SELECT date, count, CAST(SUM(total) OVER (ORDER BY date) AS integer) AS total
+FROM data
